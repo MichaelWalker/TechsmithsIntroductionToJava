@@ -4,9 +4,14 @@ import models.Dog;
 import models.Owner;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,6 +39,11 @@ public class TestExercises {
             MAISIE, MIKE,
             POPPY, MIKE
     );
+
+    private List<String> getSampleWords() throws IOException {
+        String content = Files.readString(Path.of("src/test/resources/sample_paragraph.txt"));
+        return List.of(content.split(" ")).stream().map(String::toLowerCase).collect(Collectors.toList());
+    }
 
     @Test
     public void check_a_example() {
@@ -100,8 +110,53 @@ public class TestExercises {
         assertThat(entrySet).containsExactlyElementsOf(expected);
     }
 
-//    @Test
-//    public void check_h_getTheDogsForAnOwner() {
-//        Map<Owner, List<Dog>> ownersAndTheirDogs = Exercises.h_getTheDogsForAnOwner(DOG_OWNER_MAP, );
-//    }
+    @Test
+    public void check_h_getTheDogsForAnOwner() {
+        List<Dog> mikeDogs = Exercises.h_getTheDogsForAnOwner(DOG_OWNER_MAP, MIKE);
+        List<Dog> adamDogs = Exercises.h_getTheDogsForAnOwner(DOG_OWNER_MAP, ADAM);
+
+        assertThat(mikeDogs).containsOnly(MAISIE, POPPY);
+        assertThat(adamDogs).containsOnly(MOLLY);
+    }
+
+    @Test
+    public void check_i_getTheMapOfOwnersToDogs() {
+        Map<Owner, List<Dog>> ownersAndTheirDogs = Exercises.i_getTheMapOfOwnersToDogs(DOG_OWNER_MAP);
+
+        assertThat(ownersAndTheirDogs.get(MIKE)).containsOnly(MAISIE, POPPY);
+        assertThat(ownersAndTheirDogs.get(ADAM)).containsOnly(MOLLY);
+    }
+
+    @Test
+    public void check_j_countOccurrencesOfWords() throws Exception {
+        Map<String, Integer> actual = Exercises.j_countOccurrencesOfWords(getSampleWords());
+
+        assertThat(actual.size()).isEqualTo(148);
+        assertThat(actual.get("they")).isEqualTo(10);
+        assertThat(actual.get("to")).isEqualTo(4);
+        assertThat(actual).isNotEmpty();
+    }
+
+    @Test
+    public void check_k_findTheMostCommonFirstLetter() throws Exception {
+        String actual = Exercises.k_findTheMostCommonFirstLetter(getSampleWords());
+
+        assertThat(actual).isEqualTo("t");
+    }
+
+    @Test
+    public void check_l_dogParkMap() {
+        Map<Owner, String> ownerParkMap = Map.of(
+                MIKE, "Woodside Park",
+                BEN, "Regents Park",
+                ADAM, "Hamstead Heath",
+                ALEX, "Richmond Park"
+        );
+
+        Map<Dog, String> dogParkMap = Exercises.l_dogParkMap(DOG_OWNER_MAP, ownerParkMap);
+
+        assertThat(dogParkMap.get(POPPY)).isEqualTo("Woodside Park");
+        assertThat(dogParkMap.get(MAISIE)).isEqualTo("Woodside Park");
+        assertThat(dogParkMap.get(MOLLY)).isEqualTo("Hamstead Heath");
+    }
 }
