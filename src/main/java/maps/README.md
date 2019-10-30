@@ -65,7 +65,7 @@ Set<Map.Entry<String, String>> dictionaryEntries = dictionary.entrySet();
 
 ```java
 // Get a Set containing all of the 'keys' in the map.
-Set<String> words = dictionaryEntries.keys;
+Set<String> words = dictionaryEntries.keySet();
 ```
 
 ```java
