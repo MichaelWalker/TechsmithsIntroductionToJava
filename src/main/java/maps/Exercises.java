@@ -13,11 +13,11 @@ public class Exercises {
     // Example
     // Fill in the method so that it returns the value for the given key.
     public static String a_example(Map<String, String> dictionary, String word) {
-        return null;
+        return dictionary.get(word);
     }
 
     // Fill in the method so that it returns the owner of the given dog.
-    public static Dog b_getOwnerOfDog(Map<Dog, Owner> dogsToOwner, Dog dog) {
+    public static Owner b_getOwnerOfDog(Map<Dog, Owner> dogsToOwner, Dog dog) {
         return null;
     }
 

@@ -5,7 +5,6 @@ import models.Owner;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -47,8 +46,8 @@ public class TestExercises {
 
     @Test
     public void check_b_getOwnerOfDog() {
-        Owner ownerOfMolly = DOG_OWNER_MAP.get(MOLLY);
-        Owner ownerOfCliff = DOG_OWNER_MAP.get(CLIFF);
+        Owner ownerOfMolly = Exercises.b_getOwnerOfDog(DOG_OWNER_MAP, MOLLY);
+        Owner ownerOfCliff = Exercises.b_getOwnerOfDog(DOG_OWNER_MAP, CLIFF);
 
         assertThat(ownerOfMolly).isEqualTo(ADAM);
         assertThat(ownerOfCliff).isEqualTo(BEN);
