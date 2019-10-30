@@ -42,7 +42,7 @@ public class TestExercises {
         String agileDefinition = Exercises.a_example(DICTIONARY, "agile");
 
         assertThat(aardvarkDefinition).isEqualTo("A nocturnal badger-sized burrowing mammal.");
-        assertThat(agileDefinition).isEqualTo("A nocturnal badger-sized burrowing mammal.");
+        assertThat(agileDefinition).isEqualTo("Able to move quickly and easily");
     }
 
     @Test
