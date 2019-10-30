@@ -54,7 +54,7 @@ namesToDogs.put("spoonerism", "a transposition of usually initial sounds of two 
 We often want to check if our key exists in our map. We can do this using the `contains` method.
 ```java
 // 'spoonerism' is an unusual word - let's check if its in our dictionary!
-boolean hasSpoonerism = dictionary.contains('spoonerism');
+boolean hasSpoonerism = dictionary.containsKey('spoonerism');
 ```
 
 ### Other things!
